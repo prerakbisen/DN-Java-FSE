@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Events Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin-left: 5%;
+            margin-right: 5%;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        #navigation {
+            background-color: rgb(214, 211, 211);
+            width: 90%;
+            padding: 10px;
+            border-radius: 26px;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            box-shadow: 3px 3px 11px 2px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 5%;
+            right: 5%;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        #navigation a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        #navigation a:hover {
+            text-decoration: underline;
+        }
+
+        #welcomebanner {
+            background-color: rgb(173, 207, 234);
+            padding: 20px;
+            text-align: center;
+            border-radius: 26px;
+            box-shadow: 3px 3px 11px 11px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: red;
+        }
+
+        .offer {
+            border: 2px solid red;
+            border-radius: 26px;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        .container {
+            background-color: rgb(215, 228, 239);
+            padding: 20px;
+            border-radius: 26px;
+            box-shadow: 3px 3px 11px 7px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .container h2,
+        .container h3 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        .photo-box {
+            max-width: 360px;
+            height: 190px;
+            border: 4px solid #000000;
+            border-radius: 10px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        /* Exercise 6: Double-click zoom style */
+        .photo-box img.enlarged {
+            transform: scale(1.4);
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0055aa;
+        }
+
+        #confirmationOutput,
+        #contactOutput {
+            display: block;
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+
+        #phoneError {
+            color: red;
+            font-weight: bold;
+        }
+
+        #feeDisplay {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .clear-btn {
+            background: #a94442;
+            margin-top: 10px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Centering utility for the contact form layout */
+        .centered-form-wrapper {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body onload="loadSavedPreference()">
+
+    <section label="Navigation">
+        <nav id="navigation">
+            <a href="#">Home</a>
+            <a href="#events">Events</a>
+            <a href="#registration">Registration</a>
+            <a href="#contact">Contact</a>
+            <a href="#geo-section">Find Center</a>
+            <a class="help" href="help.html" target="_blank">Help</a>
+        </nav>
+    </section>
+
+    <section label="Main" id="home">
+        <div id="welcomebanner">
+            <h1>Welcome to the Local Community Events Portal</h1>
+            <p>Discover and participate in events happening in your local community!</p>
+            <div class="offer" style="background-color: #ffffff; color:red; padding: 10px; margin-top: 20px;">
+                <span class="highlight">Special Offer :</span> Get 20% off your first event registration!
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="geo-section">
+        <h2>Find Nearby Venues</h2>
+        <button onclick="findLocation()">Find Nearby Events</button>
+        <p id="geoOutput" style="text-align:center; font-weight:bold; margin-top:10px;"></p>
+    </section>
+
+    <section label="Events">
+        <div id="events" class="container">
+            <h2>Past Events Gallery</h2>
+            <h3>Explore photos and highlights from our past events. (Double-click to zoom)</h3>
+            <table>
+                <tr>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 1.jpg" alt="Food Festival" title="Event 1"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Food Festival: the best food event of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 2.jfif" alt="Holi Celebration" title="Event 2"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Holi Celebration: the most vibrant festival of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 3.jfif" alt="Music Concert" title="Event 3"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Music Concert: the best music event of the year!</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 4.jfif" alt="Janmastami Celebration" title="Event 4"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Janmastami Celebration: the most joyous festival of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 5.jfif" alt="Cultural Fest" title="Event 5"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Cultural fest: the most exciting cultural event of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Module 1/Html/event 6.jfif" alt="Blood Donation" title="Event 6"
+                                ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Blood Donation Drive: the most generous event of the year!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section label="Registration form" id="registration">
+        <div class="container">
+            <h2>Event Registration</h2>
+            <h3>Register for upcoming events in your community.</h3>
+
+            <form id="registrationForm" onsubmit="submitForm(event)">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" oninput="markAsEdited()"
+                    required autofocus>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter 10 digit phone number"
+                    onblur="validatePhone()" required>
+                <span id="phoneError"></span>
+
+                <label for="date">Event Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="eventType">Event Type</label>
+                <select id="eventType" name="eventType" onchange="showEventFee(); savePreference();" required>
+                    <option value="">Select Event</option>
+                    <option value="Music Night">Music Night</option>
+                    <option value="Janmastami Celebration">Janmastami Celebration</option>
+                    <option value="Holi Festival">Holi Festival</option>
+                    <option value="Cultural Fest">Cultural Fest</option>
+                    <option value="Food Fest">Food Fest</option>
+                    <option value="Blood Donation Drive">Blood Donation Drive</option>
+                </select>
+                <div id="feeDisplay"></div>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here" onkeyup="countCharacters()"
+                    required></textarea>
+                <p id="charCount" style="font-size: 14px; font-weight: bold; color: #555;">Characters typed: 0</p>
+
+                <button type="submit" onclick="buttonConfirmation()">Submit Registration</button>
+                <output id="confirmationOutput"></output>
+            </form>
+
+            <button class="clear-btn" onclick="clearPreferences()">Clear Saved Preferences</button>
+        </div>
+    </section>
+
+    <section label="Contact" id="contact">
+        <div class="container">
+            <h2>Contact Our City Council Helpdesk</h2>
+            <h3>Have questions or concerns? Get in touch directly.</h3>
+
+            <div class="contact-info">
+                <p>📍 <strong>Office Address:</strong> 1 Mall Road, City Center, Bhopal</p>
+                <p>📞 <strong>Helpline:</strong> +91 1234567890 | ✉️ <strong>Email:</strong> support@citycouncil.gov</p>
+            </div>
+
+            <div class="centered-form-wrapper">
+                <form id="contactForm" onsubmit="submitContactForm(event)">
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" name="contactName" placeholder="Enter your name"
+                        oninput="markAsEdited()" required>
+
+                    <label for="contactQuery">Your Question/Feedback</label>
+                    <textarea id="contactQuery" name="contactQuery" placeholder="Type your message here..."
+                        onkeyup="countContactCharacters()" required></textarea>
+                    <p id="contactCharCount" style="font-size: 14px; font-weight: bold; color: #555;">Characters typed:
+                        0</p>
+
+                    <button type="submit" onclick="contactButtonAlert()">Send Message</button>
+                    <output id="contactOutput"></output>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="video-section">
+        <h2>Event Video Invite</h2>
+        <video id="promoVideo" controls oncanplay="videoReadyMessage()">
+            <source src="invite.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p id="videoStatus" style="text-align:center; font-style:italic;"></p>
+    </section>
+
+
+
+    <script>
+        var isFormDirty = false;
+
+        function markAsEdited() {
+            isFormDirty = true;
+        }
+
+        window.onbeforeunload = function () {
+            if (isFormDirty) {
+                return "You have unsaved changes!";
+            }
+        };
+
+        function submitForm(event) {
+            event.preventDefault();
+            isFormDirty = false;
+            var nameInput = document.getElementById("name").value;
+            document.getElementById("confirmationOutput").textContent = "✅ Success! Thank you, " + nameInput + ". Your details were parsed safely by the <output> tag.";
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            isFormDirty = false;
+            var contactName = document.getElementById("contactName").value;
+            document.getElementById("contactOutput").textContent = "✅ Message sent! Thank you, " + contactName + ". Our staff will respond shortly.";
+        }
+
+        function buttonConfirmation() {
+            alert("Submission button clicked!");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            window.contactButtonAlert = function () {
+                alert("Contact query submitted!");
+            };
+        });
+
+        function validatePhone() {
+            var phoneValue = document.getElementById("phone").value;
+            var errorSpan = document.getElementById("phoneError");
+            if (phoneValue.length !== 10 || isNaN(phoneValue)) {
+                errorSpan.textContent = "❌ Invalid format. Must be a 10-digit number.";
+            } else {
+                errorSpan.textContent = "";
+            }
+        }
+
+        function showEventFee() {
+            var selectedType = document.getElementById("eventType").value;
+            var feeDisplay = document.getElementById("feeDisplay");
+            if (selectedType === "Music Night") {
+                feeDisplay.textContent = "Ticket Cost: $25";
+            } else if (selectedType === "Food Fest") {
+                feeDisplay.textContent = "Ticket Cost: $15";
+            } else if (selectedType === "Blood Donation Drive") {
+                feeDisplay.textContent = "Ticket Cost: Free Entry";
+            } else if (selectedType === "") {
+                feeDisplay.textContent = "";
+            } else {
+                feeDisplay.textContent = "Ticket Cost: $10";
+            }
+        }
+
+        function toggleZoom(imageElement) {
+            if (imageElement.className === "enlarged") {
+                imageElement.className = "";
+            } else {
+                imageElement.className = "enlarged";
+            }
+        }
+
+        function countCharacters() {
+            var currentText = document.getElementById("message").value;
+            document.getElementById("charCount").textContent = "Characters typed: " + currentText.length;
+        }
+
+        function countContactCharacters() {
+            var text = document.getElementById("contactQuery").value;
+            document.getElementById("contactCharCount").textContent = "Characters typed: " + text.length;
+        }
+
+        function videoReadyMessage() {
+            document.getElementById("videoStatus").textContent = "Video ready to play.";
+        }
+
+        function savePreference() {
+            var dropdownValue = document.getElementById("eventType").value;
+            if (dropdownValue !== "") {
+                localStorage.setItem("userEventChoice", dropdownValue);
+                sessionStorage.setItem("sessionEventChoice", dropdownValue);
+            }
+        }
+
+        function loadSavedPreference() {
+            var storedChoice = localStorage.getItem("userEventChoice");
+            if (storedChoice) {
+                document.getElementById("eventType").value = storedChoice;
+                showEventFee();
+            }
+        }
+
+        function clearPreferences() {
+            localStorage.removeItem("userEventChoice");
+            sessionStorage.removeItem("sessionEventChoice");
+            document.getElementById("eventType").value = "";
+            document.getElementById("feeDisplay").textContent = "";
+            alert("Preferences cleared!");
+        }
+
+        function findLocation() {
+            var output = document.getElementById("geoOutput");
+            output.textContent = "Locating your system coordinates...";
+            var options = { enableHighAccuracy: true, timeout: 6000 };
+
+            if (!navigator.geolocation) {
+                output.textContent = "Geolocation is not supported by this browser.";
+                return;
+            }
+
+            function success(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                output.textContent = "Coordinates Decoded -> Latitude: " + lat + "° | Longitude: " + lon + "°";
+            }
+
+            function error(err) {
+                if (err.code === 1) {
+                    output.textContent = "Error: Permission Denied by User Settings.";
+                } else if (err.code === 3) {
+                    output.textContent = "Error: Connection timed out before locating parameters.";
+                } else {
+                    output.textContent = "Error: Unable to locate system.";
+                }
+            }
+            navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+    </script>
+</body>
+
+</html>
