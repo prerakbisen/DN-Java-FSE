@@ -1,0 +1,395 @@
+/* =========================================================
+   Module 1 CSS3 Exercise - Local Community Event Portal
+   External stylesheet containing reusable styles
+   ========================================================= */
+
+/* Universal reset and base page behavior */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Body styles with fallback color and background image */
+body {
+    width: 90%;
+    margin: 0 auto;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #eef7ff url('community-bg.jpg') center/cover fixed no-repeat;
+    color: #222222;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* Grouping selector for common text readability */
+h3,
+p {
+    color: rgba(34, 34, 34, 0.92);
+    line-height: 1.7;
+}
+
+/* Element selector for all section headings */
+h2 {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #003366;
+    background: linear-gradient(90deg, #b7ddff, #ffffff, #b7ddff);
+    padding: 12px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+}
+
+/* ID selector for main page banner header */
+#mainHeader {
+    padding-top: 100px;
+}
+
+/* Header and navigation styles */
+#navigation {
+    background-color: rgba(214, 211, 211, 0.95);
+    width: 90%;
+    padding: 12px;
+    border-radius: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 11px 2px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    font-size: 18px;
+    z-index: 1000;
+}
+
+/* Navigation list/link spacing */
+#navigation a {
+    margin: 0 8px;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 16px;
+}
+
+/* Link pseudo-class styles */
+a:link {
+    color: #003366;
+}
+
+a:visited {
+    color: #5b2c83;
+}
+
+a:hover {
+    color: #0055aa;
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+a:active {
+    color: #d62828;
+}
+
+/* Welcome banner styles */
+#welcomebanner {
+    background-color: rgba(173, 207, 234, 0.95);
+    padding: 28px;
+    text-align: center;
+    border-radius: 26px;
+    box-shadow: 3px 3px 11px 11px rgba(0, 0, 0, 0.1);
+}
+
+#welcomebanner h1 {
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+}
+
+#welcomebanner p {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Offer and highlight styles */
+.highlight {
+    font-weight: 700;
+    color: #d62828;
+}
+
+.offer {
+    background-color: #ffffff;
+    color: #d62828;
+    padding: 12px;
+    margin: 20px 20% 0;
+    border: 2px solid #d62828;
+    border-radius: 26px;
+}
+
+/* Class selector for event containers */
+.eventCard {
+    border: 2px solid rgba(0, 51, 102, 0.18);
+    padding: 22px;
+    margin-top: 30px;
+    outline-offset: 5px;
+}
+
+/* Reusable section container */
+.container {
+    background-color: rgba(215, 228, 239, 0.95);
+    border-radius: 26px;
+    box-shadow: 3px 3px 11px 7px rgba(0, 0, 0, 0.1);
+}
+
+.container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Style for main CTA button */
+.cta-button {
+    background-color: #007BFF;
+    color: white;
+    font-weight: 700;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* Gallery table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.gallery-table td {
+    padding: 12px;
+    vertical-align: top;
+}
+
+/* Admin table styles with borders, padding and zebra rows */
+.admin-table th,
+.admin-table td {
+    border: 1px solid #7d9bb8;
+    padding: 14px;
+    text-align: center;
+}
+
+.admin-table th {
+    background-color: #003366;
+    color: #ffffff;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Event image styles */
+.photo-box {
+    max-width: 360px;
+    height: 190px;
+    border: 4px solid #000000;
+    border-radius: 10px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Double-click zoom style */
+.photo-box img.enlarged {
+    transform: scale(1.4);
+}
+
+/* Multi-column newspaper style */
+.news-article {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+/* Form styles */
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    font-weight: 700;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 11px;
+    font-size: 16px;
+    border: 1px solid #bbbbbb;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Outline to highlight selected fields */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid #ffb703;
+    border-color: #003366;
+}
+
+button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #0055aa;
+}
+
+#confirmationOutput,
+#contactOutput {
+    display: block;
+    margin-top: 10px;
+    color: green;
+    font-weight: 700;
+}
+
+#phoneError {
+    color: red;
+    font-weight: 700;
+}
+
+#feeDisplay {
+    font-weight: 700;
+    color: #003366;
+}
+
+.counter-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #555555;
+}
+
+.clear-btn {
+    background-color: #a94442;
+    margin-top: 10px;
+}
+
+/* Video section styles */
+video {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+#videoStatus,
+#geoOutput {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* Centering utility for the contact form layout */
+.centered-form-wrapper {
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+/* Visibility comparison styles */
+.visible-box {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #003366;
+}
+
+.hidden-box {
+    visibility: hidden;
+}
+
+.none-box {
+    display: none;
+}
+
+/* Responsive Web Design for screens below 768px */
+@media (max-width: 768px) {
+    body {
+        width: 96%;
+        font-size: 14px;
+    }
+
+    #navigation {
+        width: 96%;
+        left: 2%;
+        right: 2%;
+        flex-direction: column;
+        align-items: center;
+        font-size: 15px;
+        position: static;
+    }
+
+    #mainHeader {
+        padding-top: 20px;
+    }
+
+    #welcomebanner h1 {
+        font-size: 1.7rem;
+    }
+
+    .offer {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .gallery-table tr,
+    .gallery-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .photo-box {
+        width: 90vw;
+        height: 45vw;
+        max-height: 220px;
+    }
+
+    .news-article {
+        column-count: 1;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}

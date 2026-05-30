@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Events Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal CSS: page background experiment for Module 1 */
+        body {
+            background-color: #eef7ff;
+        }
+    </style>
+</head>
+
+<body onload="loadSavedPreference()">
+
+    <section label="Navigation">
+        <nav id="navigation">
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#registration">Registration</a>
+            <a href="#contact">Contact</a>
+            <a href="#news">News</a>
+            <a href="#geo-section">Find Center</a>
+            <a class="help" href="help.html" target="_blank">Help</a>
+        </nav>
+    </section>
+
+    <header id="mainHeader">
+        <section label="Main" id="home">
+            <div id="welcomebanner" class="eventCard">
+                <h1 style="color: red;">Welcome to the Local Community Events Portal</h1>
+                <p>Discover and participate in events happening in your local community!</p>
+                <div class="offer">
+                    <span class="highlight">Special Offer:</span> Get 20% off your first event registration!
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <section class="container eventCard" id="geo-section">
+        <h2>Find Nearby Venues</h2>
+        <button class="cta-button" onclick="findLocation()">Find Nearby Events</button>
+        <p id="geoOutput"></p>
+    </section>
+
+    <section label="Events">
+        <div id="events" class="container eventCard">
+            <h2>Past Events Gallery</h2>
+            <h3>Explore photos and highlights from our past events. Double-click any image to zoom.</h3>
+            <table class="gallery-table">
+                <tr>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 1.jpg" alt="Food Festival" title="Event 1" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Food Festival: the best food event of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 2.jfif" alt="Holi Celebration" title="Event 2" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Holi Celebration: the most vibrant festival of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 3.jfif" alt="Music Concert" title="Event 3" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Music Concert: the best music event of the year!</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 4.jfif" alt="Janmastami Celebration" title="Event 4" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Janmastami Celebration: the most joyous festival of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 5.jfif" alt="Cultural Fest" title="Event 5" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Cultural Fest: the most exciting cultural event of the year!</p>
+                    </td>
+                    <td>
+                        <div class="photo-box">
+                            <img src="/Upskilling/Module 1/Css/event 6.jfif" alt="Blood Donation" title="Event 6" ondblclick="toggleZoom(this)">
+                        </div>
+                        <p>Blood Donation Drive: the most generous event of the year!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="container eventCard" id="schedule">
+        <h2>Upcoming Events Schedule</h2>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Entry Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Music Night</td><td>12 June 2026</td><td>City Hall</td><td>25₹</td></tr>
+                <tr><td>Food Fest</td><td>18 June 2026</td><td>Community Ground</td><td>15₹</td></tr>
+                <tr><td>Blood Donation Drive</td><td>25 June 2026</td><td>Health Center</td><td>Free</td></tr>
+                <tr><td>Cultural Fest</td><td>30 June 2026</td><td>Open Auditorium</td><td>10₹</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="container eventCard" id="news">
+        <h2>Community Bulletin</h2>
+        <article class="news-article">
+            Our city council is organizing a series of events to bring residents together and celebrate local culture. Families, students, senior citizens, and community groups are invited to participate in workshops, health drives, music evenings, food festivals, and awareness programs. These activities help people connect, learn new skills, and support important social causes. Volunteers can also register to help with event management, visitor guidance, and public announcements.
+        </article>
+    </section>
+
+    <section class="container eventCard" id="box-demo">
+        <h2>Box Model and Visibility Demo</h2>
+        <p class="visible-box">This line is visible and takes normal space.</p>
+        <p class="hidden-box">This line uses visibility: hidden, so its space remains.</p>
+        <p class="none-box">This line uses display: none, so it takes no space.</p>
+    </section>
+
+    <section label="Registration form" id="registration">
+        <div class="container eventCard">
+            <h2>Event Registration</h2>
+            <h3>Register for upcoming events in your community.</h3>
+
+            <form id="registrationForm" onsubmit="submitForm(event)">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" oninput="markAsEdited()" required autofocus>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter 10 digit phone number" onblur="validatePhone()" required>
+                <span id="phoneError"></span>
+
+                <label for="date">Event Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="eventType">Event Type</label>
+                <select id="eventType" name="eventType" onchange="showEventFee(); savePreference();" required>
+                    <option value="">Select Event</option>
+                    <option value="Music Night">Music Night</option>
+                    <option value="Janmastami Celebration">Janmastami Celebration</option>
+                    <option value="Holi Festival">Holi Festival</option>
+                    <option value="Cultural Fest">Cultural Fest</option>
+                    <option value="Food Fest">Food Fest</option>
+                    <option value="Blood Donation Drive">Blood Donation Drive</option>
+                </select>
+                <div id="feeDisplay"></div>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here" onkeyup="countCharacters()" required></textarea>
+                <p id="charCount" class="counter-text">Characters typed: 0</p>
+
+                <button type="submit" class="cta-button" onclick="buttonConfirmation()">Submit Registration</button>
+                <output id="confirmationOutput"></output>
+            </form>
+
+            <button class="clear-btn" onclick="clearPreferences()">Clear Saved Preferences</button>
+        </div>
+    </section>
+
+    <section label="Contact" id="contact">
+        <div class="container eventCard">
+            <h2>Contact Our City Council Helpdesk</h2>
+            <h3>Have questions or concerns? Get in touch directly.</h3>
+
+            <div class="contact-info">
+                <p>📍 <strong>Office Address:</strong> 1 Mall Road, City Center, Bhopal</p>
+                <p>📞 <strong>Helpline:</strong> +91 1234567890 | ✉️ <strong>Email:</strong> support@citycouncil.gov</p>
+            </div>
+
+            <div class="centered-form-wrapper">
+                <form id="contactForm" onsubmit="submitContactForm(event)">
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" name="contactName" placeholder="Enter your name" oninput="markAsEdited()" required>
+
+                    <label for="contactQuery">Your Question/Feedback</label>
+                    <textarea id="contactQuery" name="contactQuery" placeholder="Type your message here..." onkeyup="countContactCharacters()" required></textarea>
+                    <p id="contactCharCount" class="counter-text">Characters typed: 0</p>
+
+                    <button type="submit" class="cta-button" onclick="contactButtonAlert()">Send Message</button>
+                    <output id="contactOutput"></output>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="container eventCard" id="video-section">
+        <h2>Event Video Invite</h2>
+        <video id="promoVideo" controls oncanplay="videoReadyMessage()">
+            <source src="invite.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p id="videoStatus"></p>
+    </section>
+
+<script>
+        var isFormDirty = false;
+
+        function markAsEdited() {
+            isFormDirty = true;
+        }
+
+        window.onbeforeunload = function () {
+            if (isFormDirty) {
+                return "You have unsaved changes!";
+            }
+        };
+
+        function submitForm(event) {
+            event.preventDefault();
+            isFormDirty = false;
+            var nameInput = document.getElementById("name").value;
+            document.getElementById("confirmationOutput").textContent = "✅ Success! Thank you, " + nameInput + ". Your details were parsed safely by the <output> tag.";
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            isFormDirty = false;
+            var contactName = document.getElementById("contactName").value;
+            document.getElementById("contactOutput").textContent = "✅ Message sent! Thank you, " + contactName + ". Our staff will respond shortly.";
+        }
+
+        function buttonConfirmation() {
+            alert("Submission button clicked!");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            window.contactButtonAlert = function () {
+                alert("Contact query submitted!");
+            };
+        });
+
+        function validatePhone() {
+            var phoneValue = document.getElementById("phone").value;
+            var errorSpan = document.getElementById("phoneError");
+            if (phoneValue.length !== 10 || isNaN(phoneValue)) {
+                errorSpan.textContent = "❌ Invalid format. Must be a 10-digit number.";
+            } else {
+                errorSpan.textContent = "";
+            }
+        }
+
+        function showEventFee() {
+            var selectedType = document.getElementById("eventType").value;
+            var feeDisplay = document.getElementById("feeDisplay");
+            if (selectedType === "Music Night") {
+                feeDisplay.textContent = "Ticket Cost: $25";
+            } else if (selectedType === "Food Fest") {
+                feeDisplay.textContent = "Ticket Cost: $15";
+            } else if (selectedType === "Blood Donation Drive") {
+                feeDisplay.textContent = "Ticket Cost: Free Entry";
+            } else if (selectedType === "") {
+                feeDisplay.textContent = "";
+            } else {
+                feeDisplay.textContent = "Ticket Cost: $10";
+            }
+        }
+
+        function toggleZoom(imageElement) {
+            if (imageElement.className === "enlarged") {
+                imageElement.className = "";
+            } else {
+                imageElement.className = "enlarged";
+            }
+        }
+
+        function countCharacters() {
+            var currentText = document.getElementById("message").value;
+            document.getElementById("charCount").textContent = "Characters typed: " + currentText.length;
+        }
+
+        function countContactCharacters() {
+            var text = document.getElementById("contactQuery").value;
+            document.getElementById("contactCharCount").textContent = "Characters typed: " + text.length;
+        }
+
+        function videoReadyMessage() {
+            document.getElementById("videoStatus").textContent = "Video ready to play.";
+        }
+
+        function savePreference() {
+            var dropdownValue = document.getElementById("eventType").value;
+            if (dropdownValue !== "") {
+                localStorage.setItem("userEventChoice", dropdownValue);
+                sessionStorage.setItem("sessionEventChoice", dropdownValue);
+            }
+        }
+
+        function loadSavedPreference() {
+            var storedChoice = localStorage.getItem("userEventChoice");
+            if (storedChoice) {
+                document.getElementById("eventType").value = storedChoice;
+                showEventFee();
+            }
+        }
+
+        function clearPreferences() {
+            localStorage.removeItem("userEventChoice");
+            sessionStorage.removeItem("sessionEventChoice");
+            document.getElementById("eventType").value = "";
+            document.getElementById("feeDisplay").textContent = "";
+            alert("Preferences cleared!");
+        }
+
+        function findLocation() {
+            var output = document.getElementById("geoOutput");
+            output.textContent = "Locating your system coordinates...";
+            var options = { enableHighAccuracy: true, timeout: 6000 };
+
+            if (!navigator.geolocation) {
+                output.textContent = "Geolocation is not supported by this browser.";
+                return;
+            }
+
+            function success(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                output.textContent = "Coordinates Decoded -> Latitude: " + lat + "° | Longitude: " + lon + "°";
+            }
+
+            function error(err) {
+                if (err.code === 1) {
+                    output.textContent = "Error: Permission Denied by User Settings.";
+                } else if (err.code === 3) {
+                    output.textContent = "Error: Connection timed out before locating parameters.";
+                } else {
+                    output.textContent = "Error: Unable to locate system.";
+                }
+            }
+            navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+    </script>
+</body>
+
+</html>

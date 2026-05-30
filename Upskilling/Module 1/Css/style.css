@@ -1,3 +1,117 @@
-.class{
-    color: greenyellow;
+.container {
+    background-color: rgb(215, 228, 239);
+    padding: 20px;
+    border-radius: 26px;
+    box-shadow: 3px 3px 11px 7px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.container h2,
+.container h3 {
+    text-align: center;
+}
+
+/* previous events gallery table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td {
+    padding: 12px;
+}
+/* table photo box */
+.photo-box {
+    max-width: 360px;
+    height: 190px;
+    border: 4px solid #000000;
+    border-radius: 10px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Double-click zoom style */
+.photo-box img.enlarged {
+    transform: scale(1.4);
+}
+
+/* registration and contact forms */
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+/* form button styling */
+button {
+    background: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0055aa;
+}
+/* form confirmation  */
+#confirmationOutput,
+#contactOutput {
+    display: block;
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+#phoneError {
+    color: red;
+    font-weight: bold;
+}
+
+#feeDisplay {
+    font-weight: bold;
+    color: #003366;
+}
+
+.clear-btn {
+    background: #a94442;
+    margin-top: 10px;
+}
+
+/* video invite */
+video {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 10px;
 }
